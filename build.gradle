@@ -18,6 +18,7 @@ buildscript {
 apply plugin: 'java'
 apply plugin: 'maven'
 apply plugin: 'spring-boot'
+
 apply plugin: 'org.asciidoctor.convert'
 apply plugin: 'io.github.swagger2markup'
 apply plugin: 'io.spring.dependency-management'
@@ -58,12 +59,15 @@ dependencies {
     compile 'net.logstash.logback:logstash-logback-encoder:4.5.1'
     compile("com.fasterxml.jackson.dataformat:jackson-dataformat-smile:2.6.5")
     compile("com.fasterxml.jackson.module:jackson-module-afterburner:2.6.5")
+
     testCompile "io.springfox:springfox-swagger2:${springfoxVersion}"
     testCompile "io.springfox:springfox-bean-validators:${springfoxVersion}"
     testCompile 'org.springframework.boot:spring-boot-starter-test'
     testCompile 'junit:junit'
     testCompile 'org.springframework.restdocs:spring-restdocs-mockmvc'
     testCompile 'com.fasterxml.jackson.module:jackson-module-jsonSchema:2.6.5'
+
+    compile group: 'javax.xml.bind', name: 'jaxb-api', version: '2.3.0'
 }
 
 
@@ -99,6 +103,7 @@ asciidoctor {
     ]
 }
 
+/*
 publishGhPages.dependsOn asciidoctor
 
 githubPages {
@@ -113,7 +118,7 @@ githubPages {
         from file(asciidoctor.outputDir.path + '/html5')
         into project.version
     }
-}
+}*/
 
 jar {
     dependsOn asciidoctor
@@ -125,6 +130,7 @@ jar {
     }
 }
 
-task wrapper(type: Wrapper) {
-    gradleVersion = '2.12'
+wrapper {
+    gradleVersion = '6.3'
+    distributionUrl = distributionUrl.replace("bin", "all")
 }

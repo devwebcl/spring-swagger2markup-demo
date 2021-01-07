@@ -63,13 +63,14 @@ public class Swagger2MarkupTest {
     @Autowired
     private MockMvc mockMvc;
 
+    /*
     @Test
     public void addANewPetToTheStore() throws Exception {
         this.mockMvc.perform(post("/pets/").content(createPet())
                 .contentType(MediaType.APPLICATION_JSON))
                 .andDo(document("addPetUsingPOST", preprocessResponse(prettyPrint())))
                 .andExpect(status().isOk());
-    }
+    }*/
 
     @Test
     public void createSpringfoxSwaggerJson() throws Exception {
@@ -89,6 +90,7 @@ public class Swagger2MarkupTest {
         }
     }
 
+    /*
     private String createPet() throws JsonProcessingException {
         Pet pet = new Pet();
         pet.setId(1l);
@@ -96,5 +98,5 @@ public class Swagger2MarkupTest {
         Category category = new Category(1l, "Hund");
         pet.setCategory(category);
         return new ObjectMapper().writeValueAsString(pet);
-    }
+    }*/
 }
